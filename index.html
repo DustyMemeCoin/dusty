@@ -3,89 +3,298 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Dusty — a meme coin. No promises. No rush. Just a character and a community." />
   <title>DUSTY</title>
-  <meta name="description" content="DUSTY is a meme coin. No roadmap. No promises. Just a character and a community." />
-  <meta property="og:title" content="DUSTY" />
-  <meta property="og:description" content="A meme coin. No promises — just vibes." />
-  <meta property="og:image" content="assets/og.png" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" type="image/png" href="assets/favicon-64.png" />
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root{
+      --bg:#0b0b0c;
+      --card:#121214;
+      --text:#f5f5f7;
+      --muted:#b6b6be;
+      --line:#232327;
+      --btn:#1c1c21;
+      --btn2:#24242a;
+      --ok:#2fd37a;
+      --warn:#f7c948;
+      --shadow: 0 16px 50px rgba(0,0,0,.45);
+      --radius:18px;
+      --max: 880px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(255,255,255,.06), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(255,255,255,.04), transparent 60%),
+        var(--bg);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px 14px;
+    }
+    .wrap{width:100%; max-width:var(--max)}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    header{
+      padding:22px 22px 8px;
+      display:flex;
+      gap:16px;
+      align-items:center;
+    }
+    .logo{
+      width:64px; height:64px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:#0f0f12;
+      display:grid; place-items:center;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .logo img{width:100%; height:100%; object-fit:cover}
+    .title{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+    h1{
+      margin:0;
+      font-size:24px;
+      letter-spacing:.12em;
+    }
+    .tagline{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.4;
+    }
+    .divider{height:1px; background:var(--line); margin:14px 0 0}
+    .content{padding:18px 22px 22px}
+    .pillrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:16px;
+    }
+    .pill{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12.5px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .pill b{color:var(--text); font-weight:600}
+    .mintbox{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      border-radius:14px;
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin:14px 0 18px;
+    }
+    .minttop{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+    .label{
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+      color:var(--text);
+      display:block;
+      padding:10px 12px;
+      background:#0f0f12;
+      border:1px solid var(--line);
+      border-radius:12px;
+      overflow:auto;
+      scrollbar-width:thin;
+    }
+    .btnrow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    button, .btn{
+      cursor:pointer;
+      border:1px solid var(--line);
+      background:var(--btn);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:13px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+      transition:transform .05s ease, background .15s ease;
+      user-select:none;
+    }
+    button:hover, .btn:hover{background:var(--btn2)}
+    button:active, .btn:active{transform:translateY(1px)}
+    .status{
+      font-size:12.5px;
+      color:var(--muted);
+      min-height:18px;
+    }
+    .links{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .links a{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      border-radius:14px;
+      padding:12px 12px;
+      color:var(--text);
+      text-decoration:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+    .links a span{color:var(--muted); font-size:12.5px}
+    .links a .right{color:var(--muted); font-size:12.5px; white-space:nowrap}
+    .footer{
+      margin-top:16px;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.5;
+    }
+    .footer b{color:var(--text)}
+    @media (max-width:640px){
+      header{padding:18px 16px 6px}
+      .content{padding:16px}
+      .links{grid-template-columns:1fr}
+      h1{font-size:22px}
+    }
+  </style>
 </head>
 <body>
   <main class="wrap">
-    <header class="hero">
-      <img class="logo" src="assets/dusty-logo-512.png" alt="DUSTY logo" />
-      <h1>DUSTY</h1>
-      <p class="tagline">A meme coin. No roadmap. No promises. Just a character and a community.</p>
-      <div class="pill-row">
-        <span class="pill">Fair launch</span>
-        <span class="pill">No presale</span>
-        <span class="pill">Mint revoked</span>
-        <span class="pill">Freeze revoked</span>
-      </div>
-    </header>
-
     <section class="card">
-      <h2>Token</h2>
+      <header>
+        <div class="logo" aria-label="Dusty logo">
+          <!-- Put your logo at assets/logo.png -->
+          <img src="assets/logo.png" alt="DUSTY logo" />
+        </div>
+        <div class="title">
+          <h1>DUSTY</h1>
+          <div class="tagline">A meme coin. No promises. No rush. Just a character and a community.</div>
+        </div>
+      </header>
 
-      <div class="kv">
-        <div class="k">Chain</div><div class="v">Solana</div>
-        <div class="k">Symbol</div><div class="v">DUSTY</div>
-        <div class="k">Mint</div>
-        <div class="v mono">
-          <span id="mint">DvXPjyXAijgedMhuBUvfa8FbF8v86YQqHGyiAauUrTYv</span>
-          <button class="btn" id="copyMint" type="button">Copy</button>
+      <div class="divider"></div>
+
+      <div class="content">
+        <div class="pillrow">
+          <div class="pill"><b>Fair launch</b><span>·</span><span>No presale</span></div>
+          <div class="pill"><b>Authorities</b><span>·</span><span>Mint revoked</span><span>·</span><span>Freeze revoked</span></div>
+          <div class="pill"><b>Chain</b><span>·</span><span>Solana</span></div>
+        </div>
+
+        <div class="mintbox">
+          <div class="minttop">
+            <div class="label">Token Mint</div>
+            <div class="status" id="status"></div>
+          </div>
+
+          <code id="mint">DvXPjyXAijgedMhuBUvfa8FbF8v86YQqHGyiAauUrTYv</code>
+
+          <div class="btnrow">
+            <button id="copyBtn" type="button">Copy Mint</button>
+            <a class="btn" href="https://solscan.io/token/DvXPjyXAijgedMhuBUvfa8FbF8v86YQqHGyiAauUrTYv" target="_blank" rel="noopener">Open Solscan</a>
+          </div>
+        </div>
+
+        <div class="label" style="margin:6px 0 10px;">Links</div>
+
+        <div class="links">
+          <a href="https://dexscreener.com/solana/bc8xfct9mxnkjieqdvr36zojgwvr39uo9tja2bc8quqy" target="_blank" rel="noopener">
+            <div><b>DexScreener</b><div><span>Pair</span></div></div>
+            <div class="right">BC8X…quQY</div>
+          </a>
+
+          <a href="https://raydium.io/swap/?inputMint=sol&outputMint=DvXPjyXAijgedMhuBUvfa8FbF8v86YQqHGyiAauUrTYv" target="_blank" rel="noopener">
+            <div><b>Raydium</b><div><span>Swap</span></div></div>
+            <div class="right">DUSTY/SOL</div>
+          </a>
+
+          <a href="https://jup.ag/tokens/DvXPjyXAijgedMhuBUvfa8FbF8v86YQqHGyiAauUrTYv" target="_blank" rel="noopener">
+            <div><b>Jupiter</b><div><span>Token</span></div></div>
+            <div class="right">DvXP…UrTYv</div>
+          </a>
+
+          <!-- Replace with your Telegram link when ready -->
+          <a href="#" id="tgLink" target="_blank" rel="noopener">
+            <div><b>Telegram</b><div><span>Community</span></div></div>
+            <div class="right">@dusty…</div>
+          </a>
+        </div>
+
+        <div class="footer">
+          <b>Note:</b> Wallets and explorers may label new tokens as “unverified” for a while. Always verify the mint address above before swapping.
         </div>
       </div>
-
-      <p class="muted">
-        Always verify the mint address above before swapping. Never trust screenshots or look-alike tokens.
-      </p>
     </section>
-
-    <section class="card">
-      <h2>Links</h2>
-      <ul class="links">
-        <li><a href="REPLACE_WITH_X_LINK" rel="noopener noreferrer" target="_blank">https://x.com/DustyMemeCoin</a></li>
-        <li><a href="REPLACE_WITH_DEXSCREENER_LINK" rel="noopener noreferrer" target="_blank">https://dexscreener.com/solana/bc8xfct9mxnkjieqdvr36zojgwvr39uo9tja2bc8quqy</a></li>
-        <li><a href="REPLACE_WITH_SOLSCAN_LINK" rel="noopener noreferrer" target="_blank">Solscan</a></li>
-        <li><a href="REPLACE_WITH_RAYDIUM_LINK" rel="noopener noreferrer" target="_blank">Raydium</a></li>
-        <li><a href="REPLACE_WITH_JUPITER_LINK" rel="noopener noreferrer" target="_blank">Jupiter</a></li>
-        <li><a href="REPLACE_WITH_TELEGRAM_LINK" rel="noopener noreferrer" target="_blank">Telegram</a></li>
-      </ul>
-      <p class="muted">
-        No paid promotions. No insider allocations. If you see someone asking for money/tokens to “promote”, ignore.
-      </p>
-    </section>
-
-    <section class="card">
-      <h2>Disclosure</h2>
-      <p class="muted">
-        DUSTY is a meme coin with no intrinsic value or expectation of financial return. This site is informational only and not investment advice.
-      </p>
-    </section>
-
-    <footer class="footer">
-      <span class="muted">© <span id="y"></span> DUSTY</span>
-    </footer>
   </main>
 
-<script>
-  const mint = document.getElementById('mint').textContent.trim();
-  document.getElementById('copyMint').addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(mint);
-      const btn = document.getElementById('copyMint');
-      const prev = btn.textContent;
-      btn.textContent = 'Copied';
-      setTimeout(() => btn.textContent = prev, 900);
-    } catch (e) {
-      alert('Copy failed. Long-press/select the mint address and copy manually.');
+  <script>
+    const mint = document.getElementById('mint');
+    const status = document.getElementById('status');
+    const copyBtn = document.getElementById('copyBtn');
+
+    function setStatus(text, ok=true){
+      status.textContent = text;
+      status.style.color = ok ? "rgba(47,211,122,.95)" : "rgba(247,201,72,.95)";
+      clearTimeout(window.__st);
+      window.__st = setTimeout(() => { status.textContent = ""; }, 2200);
     }
-  });
-  document.getElementById('y').textContent = new Date().getFullYear();
-</script>
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(mint.textContent.trim());
+        setStatus("Copied ✓", true);
+      } catch (e) {
+        // Fallback for older browsers
+        const range = document.createRange();
+        range.selectNodeContents(mint);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        document.execCommand('copy');
+        sel.removeAllRanges();
+        setStatus("Copied ✓", true);
+      }
+    });
+
+    // Optional: set Telegram link quickly by editing this line
+    // Example: document.getElementById('tgLink').href = "https://t.me/yourgroup";
+    // If you leave it as "#", it won't go anywhere.
+  </script>
 </body>
 </html>
